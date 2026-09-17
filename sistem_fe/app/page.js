@@ -18,7 +18,7 @@ export default function Home() {
 
   return (
     <main>
-      <h1>Frontend Next.js</h1>
+      <h1>Barleyan Next.js</h1>
       <p>{message}</p>
     </main>
   );
