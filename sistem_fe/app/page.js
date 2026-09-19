@@ -1,615 +1,292 @@
-"use client";
-
-import { useState } from "react";
 import Link from "next/link";
+import { Plus_Jakarta_Sans } from "next/font/google";
+import styles from "./home.module.css";
 
-export default function Home() {
-  const [mobileMenu, setMobileMenu] = useState(false);
-  const [openMenu, setOpenMenu] = useState(null);
+// Ganti gambar latar hero di sini.
+// Taruh file gambar di folder `public/` lalu tulis path-nya (contoh: "/hero-bg.jpg").
+const HERO_IMAGE = "/coding.jpg";
 
-  const services = [
-    {
-      title: "Custom Software",
-      description:
-        "Aplikasi khusus yang dibuat sesuai kebutuhan dan proses bisnis perusahaan.",
-      icon: "⌘",
-    },
-    {
-      title: "Web Development",
-      description:
-        "Website modern, cepat, responsive dan siap dikembangkan.",
-      icon: "◈",
-    },
-    {
-      title: "ERP & CRM",
-      description:
-        "Sistem terintegrasi untuk mengelola operasional dan hubungan pelanggan.",
-      icon: "▦",
-    },
-    {
-      title: "AI & Automation",
-      description:
-        "Otomatisasi proses bisnis menggunakan teknologi AI dan workflow.",
-      icon: "✦",
-    },
-    {
-      title: "IT Consulting",
-      description:
-        "Konsultasi teknologi dan strategi digital untuk kebutuhan bisnis.",
-      icon: "◎",
-    },
-    {
-      title: "Digital Marketing",
-      description:
-        "Strategi digital untuk membantu bisnis menjangkau pelanggan lebih luas.",
-      icon: "↗",
-    },
-  ];
+const jakarta = Plus_Jakarta_Sans({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700", "800"],
+  display: "swap",
+});
 
-  const portfolios = [
-    {
-      category: "Enterprise",
-      title: "Business Management System",
-      description:
-        "Platform terintegrasi untuk mengelola operasional perusahaan.",
-    },
-    {
-      category: "Healthcare",
-      title: "Hospital Management System",
-      description:
-        "Sistem digital untuk mengelola operasional rumah sakit.",
-    },
-    {
-      category: "Retail",
-      title: "Point of Sales",
-      description:
-        "Sistem kasir dan inventory untuk bisnis retail.",
-    },
-  ];
-
-  const insights = [
-    {
-      category: "Technology",
-      title: "Mengapa Bisnis Membutuhkan Digitalisasi?",
-    },
-    {
-      category: "CRM",
-      title: "Cara Menggunakan CRM untuk Meningkatkan Customer Relationship",
-    },
-    {
-      category: "ERP",
-      title: "Mengenal Sistem ERP untuk Operasional Perusahaan",
-    },
-  ];
-
-  const scrollTo = (id) => {
-    document.getElementById(id)?.scrollIntoView({
-      behavior: "smooth",
-    });
-
-    setMobileMenu(false);
-    setOpenMenu(null);
+function Icon({ name }) {
+  const common = {
+    width: 24,
+    height: 24,
+    viewBox: "0 0 24 24",
+    fill: "none",
+    stroke: "currentColor",
+    strokeWidth: 1.8,
+    strokeLinecap: "round",
+    strokeLinejoin: "round",
+    "aria-hidden": true,
   };
 
+  switch (name) {
+    case "code":
+      return (
+        <svg {...common}>
+          <path d="m8 8-4 4 4 4" />
+          <path d="m16 8 4 4-4 4" />
+          <path d="m13.5 5-3 14" />
+        </svg>
+      );
+    case "globe":
+      return (
+        <svg {...common}>
+          <circle cx="12" cy="12" r="9" />
+          <path d="M3 12h18" />
+          <path d="M12 3c2.5 2.6 3.8 5.6 3.8 9s-1.3 6.4-3.8 9c-2.5-2.6-3.8-5.6-3.8-9S9.5 5.6 12 3Z" />
+        </svg>
+      );
+    case "layers":
+      return (
+        <svg {...common}>
+          <path d="m12 3 9 5-9 5-9-5 9-5Z" />
+          <path d="m3 12.5 9 5 9-5" />
+          <path d="m3 17 9 5 9-5" />
+        </svg>
+      );
+    case "spark":
+      return (
+        <svg {...common}>
+          <path d="M12 3v4M12 17v4M3 12h4M17 12h4" />
+          <path d="m6.3 6.3 2.4 2.4M15.3 15.3l2.4 2.4M17.7 6.3l-2.4 2.4M8.7 15.3l-2.4 2.4" />
+        </svg>
+      );
+    case "compass":
+      return (
+        <svg {...common}>
+          <circle cx="12" cy="12" r="9" />
+          <path d="m15.5 8.5-2 5-5 2 2-5 5-2Z" />
+        </svg>
+      );
+    case "trend":
+      return (
+        <svg {...common}>
+          <path d="M3 17 9 11l4 4 8-8" />
+          <path d="M15 7h6v6" />
+        </svg>
+      );
+    default:
+      return null;
+  }
+}
+
+const services = [
+  {
+    title: "Custom Software",
+    description:
+      "Aplikasi khusus yang dibuat sesuai kebutuhan dan proses bisnis perusahaan.",
+    icon: "code",
+    link: "/services/custom-software",
+    size: "wide",
+    featured: true,
+  },
+  {
+    title: "Web Development",
+    description: "Website modern, cepat, responsive dan siap dikembangkan.",
+    icon: "globe",
+    link: "/services/web-development",
+    size: "narrow",
+  },
+  {
+    title: "ERP & CRM",
+    description:
+      "Sistem terintegrasi untuk mengelola operasional dan hubungan pelanggan.",
+    icon: "layers",
+    link: "/services/erp-crm",
+    size: "narrow",
+  },
+  {
+    title: "AI & Automation",
+    description:
+      "Otomatisasi proses bisnis menggunakan teknologi AI dan workflow.",
+    icon: "spark",
+    link: "/services/ai-automation",
+    size: "wide",
+  },
+  {
+    title: "IT Consulting",
+    description:
+      "Konsultasi teknologi dan strategi digital untuk kebutuhan bisnis.",
+    icon: "compass",
+    link: "/services/it-consulting",
+    size: "half",
+  },
+  {
+    title: "Digital Marketing",
+    description:
+      "Strategi digital untuk membantu bisnis menjangkau pelanggan lebih luas.",
+    icon: "trend",
+    link: "/services/digital-marketing",
+    size: "half",
+  },
+];
+
+const steps = [
+  {
+    title: "Diskusi kebutuhan",
+    text: "Kami memahami proses bisnis dan target Anda sebelum menulis satu baris kode.",
+  },
+  {
+    title: "Desain dan rencana",
+    text: "Alur, tampilan, dan jadwal disepakati bersama agar tidak ada kejutan.",
+  },
+  {
+    title: "Pengembangan",
+    text: "Dibangun bertahap. Anda bisa mencoba hasilnya di setiap tahap.",
+  },
+  {
+    title: "Peluncuran dan dukungan",
+    text: "Sistem diluncurkan, dipantau, dan terus dikembangkan bersama Anda.",
+  },
+];
+
+export default function Home() {
   return (
-    <main>
-      {/* ================= NAVBAR ================= */}
-      <header className="navbar">
-        <div className="navbar-container">
-          <div
-            className="logo"
-            onClick={() => scrollTo("home")}
-          >
-            <span className="logo-icon">Y</span>
-            <span>YourCompany</span>
-          </div>
-
-          {/* Desktop Menu */}
-          <nav className={`nav-menu ${mobileMenu ? "active" : ""}`}>
-            <button onClick={() => scrollTo("home")}>
-              Home
-            </button>
-
-            <div className="nav-dropdown">
-              <button
-                onClick={() =>
-                  setOpenMenu(
-                    openMenu === "services" ? null : "services"
-                  )
-                }
-              >
-                Services
-                <span>⌄</span>
-              </button>
-
-              {openMenu === "services" && (
-                <div className="dropdown-menu">
-                  <button onClick={() => scrollTo("services")}>
-                    Custom Software
-                  </button>
-                  <button onClick={() => scrollTo("services")}>
-                    Web Development
-                  </button>
-                  <button onClick={() => scrollTo("services")}>
-                    ERP & CRM
-                  </button>
-                  <button onClick={() => scrollTo("services")}>
-                    AI & Automation
-                  </button>
-                </div>
-              )}
-            </div>
-
-            <div className="nav-dropdown">
-              <button
-                onClick={() =>
-                  setOpenMenu(
-                    openMenu === "solutions" ? null : "solutions"
-                  )
-                }
-              >
-                Solutions
-                <span>⌄</span>
-              </button>
-
-              {openMenu === "solutions" && (
-                <div className="dropdown-menu">
-                  <button onClick={() => scrollTo("solutions")}>
-                    Business Automation
-                  </button>
-                  <button onClick={() => scrollTo("solutions")}>
-                    ERP System
-                  </button>
-                  <button onClick={() => scrollTo("solutions")}>
-                    CRM System
-                  </button>
-                  <button onClick={() => scrollTo("solutions")}>
-                    Dashboard
-                  </button>
-                </div>
-              )}
-            </div>
-
-            <button onClick={() => scrollTo("portfolio")}>
-              Portfolio
-            </button>
-
-            <button onClick={() => scrollTo("about")}>
-              About
-            </button>
-
-            <button onClick={() => scrollTo("insights")}>
-              Insights
-            </button>
-
-            <button onClick={() => scrollTo("contact")}>
-              Contact
-            </button>
-
-            <button
-              className="nav-cta"
-              onClick={() => scrollTo("contact")}
+    <main className={`${styles.page} ${jakarta.className}`}>
+      {/* HERO */}
+      <section
+        className={styles.hero}
+        style={{ "--hero-image": `url(${HERO_IMAGE})` }}
+      >
+        <div className={styles.heroInner}>
+          <p className={styles.badge}>
+            <svg
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              aria-hidden="true"
             >
-              Let's Talk
-            </button>
-          </nav>
-
-          {/* Mobile Button */}
-          <button
-            className="mobile-button"
-            onClick={() => setMobileMenu(!mobileMenu)}
-          >
-            {mobileMenu ? "✕" : "☰"}
-          </button>
-        </div>
-      </header>
-
-      {/* ================= HERO ================= */}
-      <section id="home" className="hero">
-        <div className="hero-container">
-          <div className="hero-content">
-            <div className="badge">
-              DIGITAL TECHNOLOGY PARTNER
-            </div>
-
-            <h1>
-              Build Digital
-              <br />
-              <span>Solutions</span>
-              <br />
-              That Grow Your Business.
-            </h1>
-
-            <p>
-              Kami membantu perusahaan membangun software,
-              website dan sistem digital yang scalable,
-              terintegrasi dan sesuai kebutuhan bisnis.
-            </p>
-
-            <div className="hero-buttons">
-              <button
-                className="button-primary"
-                onClick={() => scrollTo("contact")}
-              >
-                Start a Project →
-              </button>
-
-              <button
-                className="button-secondary"
-                onClick={() => scrollTo("portfolio")}
-              >
-                View Portfolio
-              </button>
-            </div>
-          </div>
-
-          <div className="hero-visual">
-            <div className="dashboard-card">
-              <div className="dashboard-header">
-                <div>
-                  <small>BUSINESS OVERVIEW</small>
-                  <h3>Dashboard</h3>
-                </div>
-
-                <div className="online">
-                  <span></span>
-                  Live
-                </div>
-              </div>
-
-              <div className="dashboard-stats">
-                <div>
-                  <small>Projects</small>
-                  <strong>128</strong>
-                  <span>+18.4%</span>
-                </div>
-
-                <div>
-                  <small>Clients</small>
-                  <strong>84</strong>
-                  <span>+12.8%</span>
-                </div>
-              </div>
-
-              <div className="chart">
-                <div className="chart-line">
-                  <i style={{ height: "35%" }}></i>
-                  <i style={{ height: "50%" }}></i>
-                  <i style={{ height: "42%" }}></i>
-                  <i style={{ height: "70%" }}></i>
-                  <i style={{ height: "58%" }}></i>
-                  <i style={{ height: "85%" }}></i>
-                  <i style={{ height: "75%" }}></i>
-                  <i style={{ height: "95%" }}></i>
-                </div>
-              </div>
-
-              <div className="dashboard-footer">
-                <span>Business Performance</span>
-                <strong>+32.5%</strong>
-              </div>
-            </div>
-
-            <div className="floating-card card-one">
-              <span>✓</span>
-              Project Delivered
-              <strong>98%</strong>
-            </div>
-
-            <div className="floating-card card-two">
-              <span>↗</span>
-              Business Growth
-              <strong>+42%</strong>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ================= STATS ================= */}
-      <section className="stats">
-        <div className="stats-container">
-          <div>
-            <strong>50+</strong>
-            <span>Projects Delivered</span>
-          </div>
-
-          <div>
-            <strong>30+</strong>
-            <span>Business Clients</span>
-          </div>
-
-          <div>
-            <strong>10+</strong>
-            <span>Technology Solutions</span>
-          </div>
-
-          <div>
-            <strong>99%</strong>
-            <span>Project Commitment</span>
-          </div>
-        </div>
-      </section>
-
-      {/* ================= SERVICES ================= */}
-      <section id="services" className="section">
-        <div className="section-heading">
-          <span>OUR SERVICES</span>
-
-          <h2>
-            Technology solutions
-            <br />
-            for modern businesses.
-          </h2>
-
-          <p>
-            Dari website sederhana hingga sistem enterprise,
-            kami membangun solusi sesuai kebutuhan bisnis.
+              <path d="M12 3v4M12 17v4M3 12h4M17 12h4" />
+              <path d="m6.3 6.3 2.4 2.4M15.3 15.3l2.4 2.4M17.7 6.3l-2.4 2.4M8.7 15.3l-2.4 2.4" />
+            </svg>
+            Software House No 1 di Indonesia
           </p>
-        </div>
 
-        <div className="services-grid">
-          {services.map((service, index) => (
-            <div className="service-card" key={index}>
-              <div className="service-icon">
-                {service.icon}
-              </div>
-
-              <h3>{service.title}</h3>
-
-              <p>{service.description}</p>
-
-              <button>
-                Learn More →
-              </button>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* ================= SOLUTIONS ================= */}
-      <section id="solutions" className="dark-section">
-        <div className="solutions-container">
-          <div>
-            <span className="section-label">
-              BUSINESS SOLUTIONS
+          <h1 className={styles.title}>
+            Software House
+            <span className={styles.titleLine}>
+              Software Custom &amp; Business Automation
             </span>
+          </h1>
 
-            <h2>
-              One platform.
-              <br />
-              Multiple possibilities.
-            </h2>
-
-            <p>
-              Bangun sistem digital yang menghubungkan
-              seluruh proses bisnis dalam satu ekosistem.
-            </p>
-          </div>
-
-          <div className="solution-list">
-            <div>
-              <span>01</span>
-              <div>
-                <h3>Business Automation</h3>
-                <p>
-                  Otomatisasi workflow untuk mengurangi
-                  pekerjaan manual.
-                </p>
-              </div>
-            </div>
-
-            <div>
-              <span>02</span>
-              <div>
-                <h3>ERP & CRM</h3>
-                <p>
-                  Integrasikan data dan proses bisnis
-                  dalam satu sistem.
-                </p>
-              </div>
-            </div>
-
-            <div>
-              <span>03</span>
-              <div>
-                <h3>Real-time Dashboard</h3>
-                <p>
-                  Pantau performa bisnis melalui data
-                  yang terintegrasi.
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ================= ABOUT ================= */}
-      <section id="about" className="section about-section">
-        <div className="about-grid">
-          <div className="about-box">
-            <div className="about-number">01</div>
-            <h3>Understand</h3>
-            <p>
-              Memahami kebutuhan dan proses bisnis
-              sebelum membangun solusi.
-            </p>
-          </div>
-
-          <div className="about-box">
-            <div className="about-number">02</div>
-            <h3>Build</h3>
-            <p>
-              Mengembangkan solusi dengan teknologi
-              modern dan scalable.
-            </p>
-          </div>
-
-          <div className="about-box">
-            <div className="about-number">03</div>
-            <h3>Grow</h3>
-            <p>
-              Membantu bisnis berkembang melalui
-              teknologi yang tepat.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      {/* ================= PORTFOLIO ================= */}
-      <section id="portfolio" className="section portfolio-section">
-        <div className="section-heading">
-          <span>OUR PORTFOLIO</span>
-
-          <h2>
-            Projects that
-            <br />
-            create impact.
-          </h2>
-        </div>
-
-        <div className="portfolio-grid">
-          {portfolios.map((item, index) => (
-            <div className="portfolio-card" key={index}>
-              <div className="portfolio-image">
-                <span>{item.category}</span>
-
-                <div className="portfolio-preview">
-                  <div></div>
-                  <div></div>
-                  <div></div>
-                </div>
-              </div>
-
-              <div className="portfolio-content">
-                <small>{item.category}</small>
-
-                <h3>{item.title}</h3>
-
-                <p>{item.description}</p>
-
-                <button>
-                  View Project →
-                </button>
-              </div>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* ================= INSIGHTS ================= */}
-      <section id="insights" className="section insights-section">
-        <div className="section-heading">
-          <span>INSIGHTS</span>
-
-          <h2>
-            Ideas for digital
-            <br />
-            business growth.
-          </h2>
-        </div>
-
-        <div className="insights-grid">
-          {insights.map((item, index) => (
-            <article className="insight-card" key={index}>
-              <div className="insight-image">
-                {String(index + 1).padStart(2, "0")}
-              </div>
-
-              <div className="insight-content">
-                <small>{item.category}</small>
-
-                <h3>{item.title}</h3>
-
-                <button>
-                  Read Article →
-                </button>
-              </div>
-            </article>
-          ))}
-        </div>
-      </section>
-
-      {/* ================= CTA ================= */}
-      <section id="contact" className="cta-section">
-        <div className="cta-container">
-          <span>READY TO START?</span>
-
-          <h2>
-            Let's build something
-            <br />
-            <span>great together.</span>
-          </h2>
-
-          <p>
-            Ceritakan kebutuhan bisnis Anda dan
-            mari diskusikan solusi digital yang tepat.
+          <p className={styles.lead}>
+            Kami bantu bisnis Anda tumbuh lewat website, software custom, dan
+            strategi digital yang terbukti meningkatkan revenue.
           </p>
 
-          <button className="cta-button">
-            Start a Conversation →
-          </button>
+          <div className={styles.heroButtons}>
+            <Link href="/contact" className={styles.buttonPrimary}>
+              Mulai Konsultasi
+              <svg
+                width="18"
+                height="18"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                aria-hidden="true"
+              >
+                <path d="M5 12h14M13 6l6 6-6 6" />
+              </svg>
+            </Link>
+            <Link href="/portfolio" className={styles.buttonSecondary}>
+              Lihat Portofolio
+            </Link>
+          </div>
         </div>
       </section>
 
-      {/* ================= FOOTER ================= */}
-      <footer className="footer">
-        <div className="footer-container">
-          <div className="footer-brand">
-            <div className="logo">
-              <span className="logo-icon">Y</span>
-              <span>YourCompany</span>
-            </div>
-
-            <p>
-              Digital technology partner untuk
-              pertumbuhan bisnis modern.
+      {/* SERVICES */}
+      <section className={styles.services}>
+        <div className={styles.container}>
+          <div className={styles.sectionHead}>
+            <h2 className={styles.sectionTitle}>
+              Solusi teknologi untuk bisnis modern.
+            </h2>
+            <p className={styles.sectionText}>
+              Dari website sederhana hingga sistem enterprise, kami membangun
+              solusi sesuai kebutuhan bisnis.
             </p>
           </div>
 
-          <div className="footer-column">
-            <h4>Company</h4>
-            <button onClick={() => scrollTo("about")}>
-              About
-            </button>
-            <button onClick={() => scrollTo("portfolio")}>
-              Portfolio
-            </button>
-            <button onClick={() => scrollTo("insights")}>
-              Insights
-            </button>
-          </div>
-
-          <div className="footer-column">
-            <h4>Services</h4>
-            <button onClick={() => scrollTo("services")}>
-              Custom Software
-            </button>
-            <button onClick={() => scrollTo("services")}>
-              Web Development
-            </button>
-            <button onClick={() => scrollTo("services")}>
-              ERP & CRM
-            </button>
-          </div>
-
-          <div className="footer-column">
-            <h4>Contact</h4>
-            <span>hello@yourcompany.id</span>
-            <span>+62 812-3456-7890</span>
-            <span>Madiun, Jawa Timur</span>
+          <div className={styles.servicesGrid}>
+            {services.map((service) => (
+              <Link
+                href={service.link}
+                key={service.title}
+                className={`${styles.serviceCard} ${styles[service.size]} ${
+                  service.featured ? styles.featured : ""
+                }`}
+              >
+                <span className={styles.serviceIcon}>
+                  <Icon name={service.icon} />
+                </span>
+                <div className={styles.serviceBody}>
+                  <h3>{service.title}</h3>
+                  <p>{service.description}</p>
+                </div>
+                <span className={styles.serviceLink}>Lihat layanan</span>
+              </Link>
+            ))}
           </div>
         </div>
+      </section>
 
-        <div className="footer-bottom">
-          <span>
-            © 2026 YourCompany. All rights reserved.
-          </span>
+      {/* PROCESS */}
+      <section className={styles.process}>
+        <div className={styles.container}>
+          <div className={styles.sectionHead}>
+            <h2 className={styles.sectionTitle}>
+              Cara kami mengerjakan proyek Anda.
+            </h2>
+            <p className={styles.sectionText}>
+              Empat tahap yang jelas, dengan hasil yang bisa Anda lihat di
+              setiap langkah.
+            </p>
+          </div>
 
-          <span>
-            Privacy Policy · Terms
-          </span>
+          <ol className={styles.steps}>
+            {steps.map((step, i) => (
+              <li className={styles.step} key={step.title}>
+                <span className={styles.stepNumber}>{i + 1}</span>
+                <h3>{step.title}</h3>
+                <p>{step.text}</p>
+              </li>
+            ))}
+          </ol>
         </div>
-      </footer>
+      </section>
+
+      {/* CTA */}
+      <section className={styles.ctaSection}>
+        <div className={styles.container}>
+          <div className={styles.cta}>
+            <div className={styles.ctaText}>
+              <h2>Let&apos;s build something great together.</h2>
+              <p>
+                Ceritakan kebutuhan bisnis Anda dan mari diskusikan solusi
+                digital yang tepat.
+              </p>
+            </div>
+            <Link href="/contact" className={styles.ctaButton}>
+              Start a Conversation
+            </Link>
+          </div>
+        </div>
+      </section>
     </main>
   );
 }

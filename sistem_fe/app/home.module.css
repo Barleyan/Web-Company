@@ -1,0 +1,479 @@
+/* ============ Tokens ============ */
+.page {
+  --paper: #f3f6fb;
+  --surface: #ffffff;
+  --ink: #12203b;
+  --muted: #5b6884;
+  --line: #dde4f0;
+  --cobalt: #2b4cff;
+  --cobalt-deep: #1b2f9e;
+  --cobalt-soft: #e6ebff;
+  --amber: #ffb524;
+
+  background: var(--paper);
+  color: var(--ink);
+  line-height: 1.6;
+  overflow-x: clip;
+}
+
+.page *,
+.page *::before,
+.page *::after {
+  box-sizing: border-box;
+}
+
+.container {
+  width: min(1180px, 100% - 48px);
+  margin-inline: auto;
+}
+
+/* ============ Hero ============ */
+.hero {
+  position: relative;
+  isolation: isolate;
+  display: flex;
+  align-items: center;
+  min-height: max(640px, calc(100svh - 80px));
+  padding: 96px 0;
+  background-color: #120d38;
+  background-image: var(--hero-image);
+  background-size: cover;
+  background-position: center right;
+  background-repeat: no-repeat;
+  color: #fff;
+}
+
+/* lapisan gelap di sisi teks agar tetap terbaca di gambar apa pun */
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(
+    90deg,
+    rgba(14, 10, 42, 0.85) 0%,
+    rgba(14, 10, 42, 0.5) 45%,
+    rgba(14, 10, 42, 0) 78%
+  );
+}
+
+.heroInner {
+  width: min(1180px, 100% - 48px);
+  margin-inline: auto;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0 0 28px;
+  padding: 9px 18px 9px 14px;
+  background: rgba(255, 255, 255, 0.14);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  border-radius: 999px;
+  font-size: 0.9375rem;
+  font-weight: 500;
+  color: #fff;
+  backdrop-filter: blur(8px);
+}
+
+.badge svg {
+  color: #b4a5ff;
+}
+
+.title {
+  margin: 0;
+  max-width: 17ch;
+  font-size: clamp(2.5rem, 5.6vw, 4.5rem);
+  line-height: 1.06;
+  font-weight: 800;
+  letter-spacing: -0.035em;
+  text-wrap: balance;
+}
+
+.titleLine {
+  display: block;
+}
+
+.lead {
+  margin: 28px 0 0;
+  max-width: 52ch;
+  font-size: 1.1875rem;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.86);
+}
+
+.heroButtons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-top: 40px;
+}
+
+.buttonPrimary,
+.buttonSecondary,
+.ctaButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 17px 32px;
+  border-radius: 999px;
+  font-size: 1rem;
+  font-weight: 700;
+  text-decoration: none;
+  transition: background-color 0.18s ease, border-color 0.18s ease,
+    color 0.18s ease;
+}
+
+.buttonPrimary {
+  background: #fff;
+  color: var(--ink);
+}
+
+.buttonPrimary:hover {
+  background: #ece8ff;
+}
+
+.buttonSecondary {
+  background: rgba(18, 13, 56, 0.55);
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  backdrop-filter: blur(8px);
+}
+
+.buttonSecondary:hover {
+  background: rgba(18, 13, 56, 0.85);
+  border-color: rgba(255, 255, 255, 0.6);
+}
+
+.buttonPrimary:focus-visible,
+.buttonSecondary:focus-visible,
+.ctaButton:focus-visible,
+.serviceCard:focus-visible {
+  outline: 3px solid var(--amber);
+  outline-offset: 3px;
+}
+
+/* ============ Shared section heading ============ */
+.sectionHead {
+  max-width: 640px;
+  margin-bottom: 48px;
+}
+
+.sectionTitle {
+  margin: 0;
+  font-size: clamp(1.9rem, 3.4vw, 2.75rem);
+  line-height: 1.12;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  text-wrap: balance;
+}
+
+.sectionText {
+  margin: 16px 0 0;
+  font-size: 1.0625rem;
+  color: var(--muted);
+  max-width: 56ch;
+}
+
+/* ============ Services (bento) ============ */
+.services {
+  padding: 96px 0;
+  background: var(--surface);
+  border-bottom: 1px solid var(--line);
+}
+
+.servicesGrid {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.wide {
+  grid-column: span 4;
+}
+
+.narrow {
+  grid-column: span 2;
+}
+
+.half {
+  grid-column: span 3;
+}
+
+.serviceCard {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  min-height: 260px;
+  padding: 28px;
+  border-radius: 20px;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  color: var(--ink);
+  text-decoration: none;
+  transition: border-color 0.18s ease, background-color 0.18s ease;
+}
+
+.serviceCard:hover {
+  border-color: var(--cobalt);
+  background: #fff;
+}
+
+.serviceIcon {
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 14px;
+  background: var(--cobalt-soft);
+  color: var(--cobalt);
+}
+
+.serviceBody {
+  margin-top: auto;
+}
+
+.serviceBody h3 {
+  margin: 0 0 8px;
+  font-size: 1.375rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+.serviceBody p {
+  margin: 0;
+  max-width: 40ch;
+  color: var(--muted);
+}
+
+.serviceLink {
+  font-size: 0.9375rem;
+  font-weight: 700;
+  color: var(--cobalt);
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 5px;
+  text-decoration-color: transparent;
+  transition: text-decoration-color 0.18s ease;
+}
+
+.serviceCard:hover .serviceLink {
+  text-decoration-color: currentColor;
+}
+
+/* kartu utama: satu-satunya elemen yang mencolok di bagian ini */
+.featured {
+  background: var(--cobalt);
+  border-color: var(--cobalt);
+  color: #fff;
+  min-height: 300px;
+}
+
+.featured:hover {
+  background: var(--cobalt-deep);
+  border-color: var(--cobalt-deep);
+}
+
+.featured .serviceIcon {
+  background: rgba(255, 255, 255, 0.16);
+  color: #fff;
+}
+
+.featured .serviceBody h3 {
+  font-size: 1.875rem;
+}
+
+.featured .serviceBody p {
+  color: rgba(255, 255, 255, 0.82);
+}
+
+.featured .serviceLink {
+  color: #fff;
+}
+
+/* ============ Process ============ */
+.process {
+  padding: 96px 0;
+}
+
+.steps {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 32px;
+}
+
+.step {
+  position: relative;
+  padding-top: 8px;
+}
+
+.step::before {
+  content: "";
+  position: absolute;
+  top: 30px;
+  left: 56px;
+  right: -32px;
+  height: 2px;
+  background: repeating-linear-gradient(
+    90deg,
+    var(--line) 0 6px,
+    transparent 6px 12px
+  );
+}
+
+.step:last-child::before {
+  display: none;
+}
+
+.stepNumber {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  margin-bottom: 20px;
+  border-radius: 50%;
+  background: var(--ink);
+  color: #fff;
+  font-weight: 800;
+}
+
+.step h3 {
+  margin: 0 0 8px;
+  font-size: 1.125rem;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+}
+
+.step p {
+  margin: 0;
+  color: var(--muted);
+  max-width: 30ch;
+}
+
+/* ============ CTA ============ */
+.ctaSection {
+  padding: 0 0 96px;
+}
+
+.cta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 40px;
+  padding: 56px 64px;
+  border-radius: 28px;
+  background-color: var(--cobalt-deep);
+  background-image: radial-gradient(
+    rgba(255, 255, 255, 0.12) 1px,
+    transparent 1px
+  );
+  background-size: 22px 22px;
+  color: #fff;
+}
+
+.ctaText h2 {
+  margin: 0;
+  max-width: 16ch;
+  font-size: clamp(1.9rem, 3.6vw, 3rem);
+  line-height: 1.08;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  text-wrap: balance;
+}
+
+.ctaText p {
+  margin: 16px 0 0;
+  max-width: 44ch;
+  color: rgba(255, 255, 255, 0.78);
+  font-size: 1.0625rem;
+}
+
+.ctaButton {
+  flex-shrink: 0;
+  background: var(--amber);
+  color: var(--ink);
+}
+
+.ctaButton:hover {
+  background: #ffc551;
+}
+
+/* ============ Responsive ============ */
+@media (max-width: 1024px) {
+  .hero {
+    background-position: 70% center;
+  }
+
+  .hero::before {
+    background: linear-gradient(
+      180deg,
+      rgba(14, 10, 42, 0.7) 0%,
+      rgba(14, 10, 42, 0.55) 100%
+    );
+  }
+
+  .steps {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    row-gap: 40px;
+  }
+
+  .step:nth-child(2)::before {
+    display: none;
+  }
+}
+
+@media (max-width: 760px) {
+  .hero {
+    min-height: 0;
+    padding: 72px 0 88px;
+  }
+
+  .buttonPrimary,
+  .buttonSecondary {
+    width: 100%;
+  }
+
+  .services,
+  .process {
+    padding: 72px 0;
+  }
+
+  .servicesGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .wide,
+  .narrow,
+  .half {
+    grid-column: auto;
+  }
+
+  .serviceCard,
+  .featured {
+    min-height: 0;
+  }
+
+  .steps {
+    grid-template-columns: 1fr;
+  }
+
+  .step::before {
+    display: none;
+  }
+
+  .cta {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 40px 28px;
+  }
+
+  .ctaSection {
+    padding-bottom: 72px;
+  }
+}

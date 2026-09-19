@@ -1,15 +1,25 @@
 import "./globals.css";
+import Navbar from "./components/Navbar";
+import Footer from "./components/Footer";
 
 export const metadata = {
-  title: "YourCompany | Digital Solutions",
+  title: "YourCompany | Digital Technology Partner",
   description:
-    "Digital solutions, custom software, website development, ERP, CRM and business automation.",
+    "Software house dan digital technology partner untuk bisnis modern.",
 };
 
 export default function RootLayout({ children }) {
   return (
     <html lang="id">
-      <body>{children}</body>
+      <body>
+
+        <Navbar />
+
+        {children}
+
+        <Footer />
+
+      </body>
     </html>
   );
 }
