@@ -1,77 +1,49 @@
+import "./about.css";
+
 export default function AboutPage() {
   return (
-    <main>
-
-      <section className="page-hero">
-
-        <span>ABOUT US</span>
-
+    <main className="about">
+      <section className="about-hero">
         <h1>
-          Technology partner
-          <br />
-          for modern business.
+          Tentang <span className="about-gradient">Software House Kami :)</span>
         </h1>
 
         <p>
-          Kami membantu perusahaan menggunakan teknologi
-          untuk membangun proses bisnis yang lebih terintegrasi.
+          Software House, singkatan dari <strong>Software House</strong>,
+          didirikan tahun 2024 di Madiun. Kami percaya bahwa teknologi yang
+          tepat adalah kunci pertumbuhan bisnis yang berkelanjutan.
         </p>
-
       </section>
 
-      <section className="section">
-
-        <div className="about-grid">
-
-          <div className="about-box">
-            <div className="about-number">
-              01
-            </div>
-
-            <h3>
-              Understand
-            </h3>
-
+      <section className="about-container">
+        <div className="about-cards">
+          <article className="about-card">
+            <h2>Misi Kami</h2>
             <p>
-              Memahami kebutuhan dan proses bisnis
-              sebelum membangun solusi.
+              Memberdayakan bisnis Indonesia dengan solusi teknologi
+              berkualitas dunia yang mudah diakses, tepat guna, dan terbukti
+              meningkatkan revenue.
             </p>
-          </div>
+          </article>
 
-          <div className="about-box">
-            <div className="about-number">
-              02
-            </div>
-
-            <h3>
-              Build
-            </h3>
-
+          <article className="about-card">
+            <h2>Visi Kami</h2>
             <p>
-              Mengembangkan solusi dengan teknologi
-              modern dan scalable.
+              Menjadi growth partner pilihan utama bagi bisnis di Indonesia
+              yang ingin scale-up melalui transformasi digital yang strategis.
             </p>
-          </div>
-
-          <div className="about-box">
-            <div className="about-number">
-              03
-            </div>
-
-            <h3>
-              Grow
-            </h3>
-
-            <p>
-              Membantu bisnis berkembang melalui
-              teknologi yang tepat.
-            </p>
-          </div>
-
+          </article>
         </div>
 
+        <figure className="about-photo">
+          {/* Taruh foto tim di public/images/tim-bms.jpg */}
+          <img
+            src="./akatsuki.jpg"
+            alt="Tim BMS Services"
+            loading="lazy"
+          />
+        </figure>
       </section>
-
     </main>
   );
 }
