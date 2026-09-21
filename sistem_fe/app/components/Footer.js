@@ -83,10 +83,6 @@ export default function Footer() {
             Portfolio
           </Link>
 
-          <Link href="/insights">
-            Insights
-          </Link>
-
           <Link href="/contact">
             Contact
           </Link>

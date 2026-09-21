@@ -52,42 +52,12 @@ const dropdowns = [
       },
     ],
   },
-  {
-    id: "solutions",
-    label: "Solutions",
-    basePath: "/solutions",
-    allHref: "/solutions",
-    allLabel: "All Solutions",
-    items: [
-      {
-        href: "/solutions/business-automation",
-        label: "Business Automation",
-        desc: "Kurangi pekerjaan manual berulang",
-      },
-      {
-        href: "/solutions/erp",
-        label: "ERP System",
-        desc: "Kelola keuangan, stok, dan operasional",
-      },
-      {
-        href: "/solutions/crm",
-        label: "CRM System",
-        desc: "Pantau prospek dan hubungan pelanggan",
-      },
-      {
-        href: "/solutions/dashboard",
-        label: "Business Dashboard",
-        desc: "Lihat data bisnis dalam satu layar",
-      },
-    ],
-  },
 ];
 
 const links = [
   { href: "/", label: "Home", position: "before" },
   { href: "/portfolio", label: "Portfolio", position: "after" },
   { href: "/about", label: "About", position: "after" },
-  { href: "/insights", label: "Insights", position: "after" },
   { href: "/contact", label: "Contact", position: "after" },
 ];
 
