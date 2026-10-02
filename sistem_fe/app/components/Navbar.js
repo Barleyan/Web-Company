@@ -5,6 +5,7 @@ import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import { Plus_Jakarta_Sans } from "next/font/google";
 import styles from "@/app/modul_css/navbar.module.css";
+import Image from "next/image";
 
 const jakarta = Plus_Jakarta_Sans({
   subsets: ["latin"],
@@ -149,11 +150,17 @@ export default function Navbar() {
       }`}
     >
       <div className={styles.container}>
-        {/* LOGO */}
-        <Link href="/" className={styles.logo}>
-          <span className={styles.logoIcon}>Y</span>
-          <span>YourCompany</span>
-        </Link>
+      <Link href="/" className={styles.logo} aria-label="DB Tech Services - Beranda">
+        <Image
+          src="/logo.jpeg"
+          alt="Logo DB Tech Services"
+          width={36}
+          height={36}
+          priority
+          className={styles.logoImg}
+        />
+        <span>DB Tech Services</span>
+      </Link>
 
         {/* MENU */}
         <nav

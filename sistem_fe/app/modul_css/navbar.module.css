@@ -304,4 +304,11 @@
     box-shadow: none;
     animation: none;
   }
+
+  .logoImg {
+  width: 36px;
+  height: 36px;
+  object-fit: contain;
+  flex-shrink: 0;
+}
 }
