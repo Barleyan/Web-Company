@@ -1,232 +1,141 @@
+import Image from "next/image";
 import Link from "next/link";
 import BackToTop from "./BackToTop";
+import styles from "@/app/modul_css/footer.module.css";
+
+const COMPANY_LINKS = [
+  { label: "Tentang Kami", href: "/about" },
+  { label: "Portfolio", href: "/portfolio" },
+  { label: "Kontak", href: "/contact" },
+];
+
+const SERVICE_LINKS = [
+  { label: "Custom Software", href: "/services/custom-software" },
+  { label: "Web Development", href: "/services/web-development" },
+  { label: "ERP & CRM", href: "/services/erp-crm" },
+];
+
+const SOCIALS = [
+  { label: "LinkedIn", short: "in", href: "#" },
+  { label: "Instagram", short: "ig", href: "https://www.instagram.com/yan_leyan/" },
+  { label: "Facebook", short: "f", href: "#" },
+  { label: "GitHub", short: "gh", href: "#" },
+];
 
 export default function Footer() {
   return (
-    <footer className="footer">
-
+    <footer className={styles.footer}>
       {/* ================= FOOTER MAIN ================= */}
-      <div className="footer-main">
-
+      <div className={styles.footerMain}>
         {/* BRAND */}
-        <div className="footer-brand">
-
+        <div className={styles.footerBrand}>
           <Link
             href="/"
-            className="footer-logo"
+            className={styles.footerLogo}
+            aria-label="DB Tech Services - Beranda"
           >
-
-            <span className="footer-logo-icon">
-              Y
-            </span>
-
-            <span>
-              YourCompany
-            </span>
-
+            <Image
+              src="/logo.jpeg"
+              alt=""
+              width={44}
+              height={38}
+              className={styles.footerLogoImg}
+            />
+            <span>DB Tech Services</span>
           </Link>
 
-          <p className="footer-description">
-            Digital technology partner yang membantu
-            perusahaan membangun software, website,
-            dan sistem digital untuk kebutuhan bisnis modern.
+          <p className={styles.footerDescription}>
+            Digital technology partner yang membantu perusahaan membangun
+            software, website, dan sistem digital untuk kebutuhan bisnis modern.
           </p>
 
-          {/* SOCIAL MEDIA */}
-          <div className="footer-social">
-
-            <a
-              href="#"
-              aria-label="LinkedIn"
-            >
-              in
-            </a>
-
-            <a
-              href="https://www.instagram.com/yan_leyan/"
-              aria-label="Instagram"
-            >
-              ig
-            </a>
-
-            <a
-              href="#"
-              aria-label="Facebook"
-            >
-              f
-            </a>
-
-            <a
-              href="#"
-              aria-label="GitHub"
-            >
-              gh
-            </a>
-
+          <div className={styles.footerSocial}>
+            {SOCIALS.map((item) => {
+              const external = item.href.startsWith("http");
+              return (
+                <a
+                  key={item.label}
+                  href={item.href}
+                  aria-label={item.label}
+                  {...(external
+                    ? { target: "_blank", rel: "noopener noreferrer" }
+                    : {})}
+                >
+                  {item.short}
+                </a>
+              );
+            })}
           </div>
-
         </div>
-
 
         {/* COMPANY */}
-        <div className="footer-column">
-
-          <h4>
-            Company
-          </h4>
-
-          <Link href="/about">
-            About Us
-          </Link>
-
-          <Link href="/portfolio">
-            Portfolio
-          </Link>
-
-          <Link href="/contact">
-            Contact
-          </Link>
-
+        <div className={styles.footerColumn}>
+          <h4>Company</h4>
+          {COMPANY_LINKS.map((link) => (
+            <Link key={link.href} href={link.href}>
+              {link.label}
+            </Link>
+          ))}
         </div>
-
 
         {/* SERVICES */}
-        <div className="footer-column">
-
-          <h4>
-            Services
-          </h4>
-
-          <Link href="/services/custom-software">
-            Custom Software
-          </Link>
-
-          <Link href="/services/web-development">
-            Web Development
-          </Link>
-
-          <Link href="/services/erp-crm">
-            ERP & CRM
-          </Link>
-
-          <Link href="/services/ai-automation">
-            AI & Automation
-          </Link>
-
-          <Link href="/services/it-consulting">
-            IT Consulting
-          </Link>
-
-          <Link href="/services/digital-marketing">
-            Digital Marketing
-          </Link>
-
+        <div className={styles.footerColumn}>
+          <h4>Services</h4>
+          {SERVICE_LINKS.map((link) => (
+            <Link key={link.href} href={link.href}>
+              {link.label}
+            </Link>
+          ))}
         </div>
-
 
         {/* CONTACT */}
-        <div className="footer-column footer-contact">
+        <div className={`${styles.footerColumn} ${styles.footerContact}`}>
+          <h4>Get in Touch</h4>
 
-          <h4>
-            Get in Touch
-          </h4>
-
-          <div className="contact-item">
-
-            <span className="contact-icon">
-              @
-            </span>
-
+          <div className={styles.contactItem}>
+            <span className={styles.contactIcon}>@</span>
             <div>
-              <small>
-                Email
-              </small>
-
-              <a href="mailto:hello@yourcompany.id">
-                hello@yourcompany.id
+              <small>Email</small>
+              <a href="mailto:dbtechservicesindo@gmail.com">
+                dbtechservicesindo@gmail.com
               </a>
             </div>
-
           </div>
 
-
-          <div className="contact-item">
-
-            <span className="contact-icon">
-              ☎
-            </span>
-
+          <div className={styles.contactItem}>
+            <span className={styles.contactIcon}>☎</span>
             <div>
-              <small>
-                Phone
-              </small>
-
-              <a href="tel:+6281234567890">
-                +62 812-3456-7890
-              </a>
+              <small>Telpon</small>
+              <a href="tel:+6285158823239">+62 851 5882 3239</a>
             </div>
-
           </div>
 
-
-          <div className="contact-item">
-
-            <span className="contact-icon">
-              ●
-            </span>
-
+          <div className={styles.contactItem}>
+            <span className={styles.contactIcon}>●</span>
             <div>
-              <small>
-                Location
-              </small>
-
-              <span>
-                Madiun, Jawa Timur
-              </span>
+              <small>Lokasi</small>
+              <span>Madiun, Jawa Timur</span>
             </div>
-
           </div>
-
         </div>
-
       </div>
-
 
       {/* ================= FOOTER BOTTOM ================= */}
-      <div className="footer-bottom">
-
-        <div className="footer-bottom-left">
-
-          <span>
-            © 2026 YourCompany.
-          </span>
-
-          <span>
-            All rights reserved.
-          </span>
-
+      <div className={styles.footerBottom}>
+        <div className={styles.footerBottomLeft}>
+          <span>© 2026 DB Tech Services.</span>
+          <span>All rights reserved.</span>
         </div>
 
-
-        <div className="footer-bottom-links">
-
-          <Link href="/privacy">
-            Privacy Policy
-          </Link>
-
-          <Link href="/terms">
-            Terms & Conditions
-          </Link>
-
+        <div className={styles.footerBottomLinks}>
+          <Link href="/privacy">Privacy Policy</Link>
+          <Link href="/terms">Terms &amp; Conditions</Link>
         </div>
 
-
-        <div className="footer-back-top">
-            <BackToTop />
+        <div className={styles.footerBackTop}>
+          <BackToTop />
         </div>
-
       </div>
-
     </footer>
   );
 }

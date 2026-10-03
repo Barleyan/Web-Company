@@ -5,6 +5,7 @@
   --hover: #f3f4fb;
   --active: #ebe9fb;
   --violet: #6d4df2;
+  --cobalt: #2d96e0;
 
   position: sticky;
   top: 0;
@@ -195,22 +196,20 @@
 }
 
 .cta {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 11px 22px;
+  background: linear-gradient(135deg, #030164 0%, #3d9bdf 100%);
+  color: #ffffff;
+  border: none;
+  padding: 12px 28px;
   border-radius: 999px;
-  background: linear-gradient(90deg, #1ea7fd, #8b6cf7);
-  color: #fff;
-  font-size: 0.9375rem;
-  font-weight: 700;
+  font-weight: 600;
   text-decoration: none;
-  white-space: nowrap;
-  transition: filter 0.16s ease;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
 }
 
 .cta:hover {
-  filter: brightness(1.08) saturate(1.05);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(61, 155, 223, 0.35);
+  filter: brightness(1.08);
 }
 
 .ctaMobile {

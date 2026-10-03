@@ -4,9 +4,9 @@ import { useState } from "react";
 import "./contact.css";
 
 // Ganti dengan data kontak Anda
-const EMAIL = "info@softwarehouse.id";
-const PHONE_DISPLAY = "+62 (0)812-3740-0289";
-const PHONE_DIGITS = "62895395756124";
+const EMAIL = "dbtechservicesindo@gmail.com";
+const PHONE_DISPLAY = " +62 851 5882 3239";
+const PHONE_DIGITS = " +62 851 5882 3239";
 const LOCATION = "Madiun, Jawa Timur, Indonesia";
 
 const services = [

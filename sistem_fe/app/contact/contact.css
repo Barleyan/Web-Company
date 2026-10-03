@@ -6,7 +6,8 @@
   --purple: #4a2bf5;
   --border: #e6e1fa;
   --field-border: #d8d5ec;
-  --gradient: linear-gradient(90deg, #1a6df0 0%, #7b8cf2 100%);
+  --gradient: linear-gradient(90deg, #030164 0%, #2d96e0 100%);
+  --cobalt: #2d96e0;
 
   min-height: 100vh;
   background: #fff;
@@ -40,7 +41,7 @@
 }
 
 .contact-gradient {
-  background: linear-gradient(90deg, #4a2bf5 0%, #7c3aed 55%, #c05cf0 100%);
+  background: linear-gradient(90deg, #030164 0%, #2d96e0 55%);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;

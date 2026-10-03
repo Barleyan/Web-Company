@@ -170,7 +170,7 @@ export default function Home() {
               <path d="M12 3v4M12 17v4M3 12h4M17 12h4" />
               <path d="m6.3 6.3 2.4 2.4M15.3 15.3l2.4 2.4M17.7 6.3l-2.4 2.4M8.7 15.3l-2.4 2.4" />
             </svg>
-            Software House No 1 di Indonesia
+            Software Terbaik & Terpercaya
           </p>
 
           <h1 className={styles.title}>
@@ -275,14 +275,14 @@ export default function Home() {
         <div className={styles.container}>
           <div className={styles.cta}>
             <div className={styles.ctaText}>
-              <h2>Let&apos;s build something great together.</h2>
+              <h2>Siap Membawa Bisnis Anda Ke Level Berikutnya. </h2>
               <p>
                 Ceritakan kebutuhan bisnis Anda dan mari diskusikan solusi
                 digital yang tepat.
               </p>
             </div>
             <Link href="/contact" className={styles.ctaButton}>
-              Start a Conversation
+              Mulai Konsultasi
             </Link>
           </div>
         </div>

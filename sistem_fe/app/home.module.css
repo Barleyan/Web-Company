@@ -2,11 +2,11 @@
 .page {
   --paper: #f3f6fb;
   --surface: #ffffff;
-  --ink: #12203b;
+  --ink: #030164;
   --muted: #5b6884;
   --line: #dde4f0;
-  --cobalt: #2b4cff;
-  --cobalt-deep: #1b2f9e;
+  --cobalt: #2d96e0;
+  --cobalt-deep: #030164;
   --cobalt-soft: #e6ebff;
   --amber: #ffb524;
 
@@ -31,16 +31,27 @@
 .hero {
   position: relative;
   isolation: isolate;
+  overflow: hidden; /* gambar yang membesar tidak keluar area hero */
   display: flex;
   align-items: center;
   min-height: max(640px, calc(100svh - 80px));
   padding: 96px 0;
-  background-color: #120d38;
+  background-color: #120d38; /* fallback saat gambar belum dimuat */
+  color: #fff;
+}
+
+/* lapisan gambar yang dianimasikan (paling belakang) */
+.hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -2;
   background-image: var(--hero-image);
   background-size: cover;
   background-position: center right;
   background-repeat: no-repeat;
-  color: #fff;
+  transform-origin: center right;
+  will-change: transform;
 }
 
 /* lapisan gelap di sisi teks agar tetap terbaca di gambar apa pun */
@@ -55,6 +66,30 @@
     rgba(14, 10, 42, 0.5) 45%,
     rgba(14, 10, 42, 0) 78%
   );
+}
+
+/* zoom mengikuti scroll: makin digulir ke bawah, gambar makin membesar */
+@keyframes heroScrollZoom {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.35);
+  }
+}
+
+@supports (animation-timeline: scroll()) {
+  .hero::after {
+    animation: heroScrollZoom linear both;
+    animation-timeline: scroll(root block);
+    animation-range: 0 100vh; /* zoom selesai setelah digulir setinggi layar */
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero::after {
+    animation: none;
+  }
 }
 
 .heroInner {
@@ -163,6 +198,7 @@
 
 .sectionTitle {
   margin: 0;
+  color: var(--cobalt-deep);
   font-size: clamp(1.9rem, 3.4vw, 2.75rem);
   line-height: 1.12;
   font-weight: 800;
@@ -368,7 +404,7 @@
   gap: 40px;
   padding: 56px 64px;
   border-radius: 28px;
-  background-color: var(--cobalt-deep);
+  background-color: var(--ink);
   background-image: radial-gradient(
     rgba(255, 255, 255, 0.12) 1px,
     transparent 1px
@@ -396,18 +432,20 @@
 
 .ctaButton {
   flex-shrink: 0;
-  background: var(--amber);
-  color: var(--ink);
+  background: var(--cobalt);
+  color: var(--cobalt-soft);
 }
 
 .ctaButton:hover {
-  background: #ffc551;
+  background: #ffffff;
+  color: var(--cobalt);
 }
 
 /* ============ Responsive ============ */
 @media (max-width: 1024px) {
-  .hero {
+  .hero::after {
     background-position: 70% center;
+    transform-origin: 70% center;
   }
 
   .hero::before {

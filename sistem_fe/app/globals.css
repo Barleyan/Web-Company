@@ -804,7 +804,7 @@ button:focus {
 /* ================= FOOTER ================= */
 
 .footer {
-  background: #0b0f19;
+  background: #030164;
   color: white;
 
   padding: 70px 24px 25px;
@@ -1049,7 +1049,7 @@ button:focus {
 
 .footer {
   position: relative;
-  background: #080b12;
+  background: #01002c;
   color: #ffffff;
   overflow: hidden;
 }

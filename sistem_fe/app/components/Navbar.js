@@ -16,7 +16,7 @@ const jakarta = Plus_Jakarta_Sans({
 const dropdowns = [
   {
     id: "services",
-    label: "Services",
+    label: "Layanan",
     basePath: "/services",
     allHref: "/services",
     allLabel: "All Services",
@@ -36,21 +36,6 @@ const dropdowns = [
         label: "ERP & CRM",
         desc: "Operasional dan pelanggan dalam satu sistem",
       },
-      {
-        href: "/services/ai-automation",
-        label: "AI & Automation",
-        desc: "Otomatisasi proses dengan AI",
-      },
-      {
-        href: "/services/it-consulting",
-        label: "IT Consulting",
-        desc: "Konsultasi teknologi dan strategi digital",
-      },
-      {
-        href: "/services/digital-marketing",
-        label: "Digital Marketing",
-        desc: "Jangkau pelanggan lebih luas",
-      },
     ],
   },
 ];
@@ -58,8 +43,8 @@ const dropdowns = [
 const links = [
   { href: "/", label: "Home", position: "before" },
   { href: "/portfolio", label: "Portfolio", position: "after" },
-  { href: "/about", label: "About", position: "after" },
-  { href: "/contact", label: "Contact", position: "after" },
+  { href: "/about", label: "Tentang", position: "after" },
+  { href: "/contact", label: "Kontak", position: "after" },
 ];
 
 function Chevron() {
@@ -218,7 +203,7 @@ export default function Navbar() {
         {/* ACTIONS */}
         <div className={styles.actions}>
           <Link href="/contact" className={`${styles.cta} ${styles.ctaDesktop}`}>
-            Let&apos;s Talk
+            Mulai Konsultasi
           </Link>
 
           <button
