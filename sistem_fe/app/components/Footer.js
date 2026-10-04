@@ -15,12 +15,12 @@ const SERVICE_LINKS = [
   { label: "ERP & CRM", href: "/services/erp-crm" },
 ];
 
-const SOCIALS = [
-  { label: "LinkedIn", short: "in", href: "#" },
-  { label: "Instagram", short: "ig", href: "https://www.instagram.com/yan_leyan/" },
-  { label: "Facebook", short: "f", href: "#" },
-  { label: "GitHub", short: "gh", href: "#" },
-];
+// const SOCIALS = [
+//   { label: "LinkedIn", short: "in", href: "#" },
+//   { label: "Instagram", short: "ig", href: "https://www.instagram.com/yan_leyan/" },
+//   { label: "Facebook", short: "f", href: "#" },
+//   { label: "GitHub", short: "gh", href: "#" },
+// ];
 
 export default function Footer() {
   return (
@@ -49,7 +49,7 @@ export default function Footer() {
             software, website, dan sistem digital untuk kebutuhan bisnis modern.
           </p>
 
-          <div className={styles.footerSocial}>
+          {/* <div className={styles.footerSocial}>
             {SOCIALS.map((item) => {
               const external = item.href.startsWith("http");
               return (
@@ -65,7 +65,7 @@ export default function Footer() {
                 </a>
               );
             })}
-          </div>
+          </div> */}
         </div>
 
         {/* COMPANY */}

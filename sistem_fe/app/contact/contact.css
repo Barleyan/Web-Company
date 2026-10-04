@@ -41,7 +41,7 @@
 }
 
 .contact-gradient {
-  background: linear-gradient(90deg, #030164 0%, #2d96e0 55%);
+  background: linear-gradient(90deg, #2d96e0 0%, #2d96e0 55%);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -152,7 +152,7 @@
   padding: 0 32px;
   border: 0;
   border-radius: 999px;
-  background: var(--gradient);
+  background: var(--ink);
   color: #fff;
   font: inherit;
   font-size: 0.95rem;

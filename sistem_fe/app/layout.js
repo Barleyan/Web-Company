@@ -3,7 +3,7 @@ import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 
 export const metadata = {
-  title: "YourCompany | Digital Technology Partner",
+  title: "DB Tech Services",
   description:
     "Software house dan digital technology partner untuk bisnis modern.",
 };

@@ -1,0 +1,35 @@
+.sv{--ink:#1e1b4b;--pri:#1e1b4b;--mut:#5b5b72;--line:#e5e7eb;--lav:linear-gradient(180deg,#539fd4,#5da3d4);
+  --ease:cubic-bezier(.2,.8,.2,1);
+  max-width:1200px;margin:0 auto;padding:56px 24px 96px;color:var(--ink)}
+
+.sv-hero{text-align:center;margin-bottom:48px}
+.sv-tag{display:inline-block;background:#ece8ff;color:var(--pri);border-radius:999px;padding:4px 14px;font-size:.78rem;letter-spacing:.06em;margin-bottom:18px}
+.sv-hero h1{font-size:clamp(2.2rem,5vw,3.4rem);margin:0 0 14px;font-weight:800;letter-spacing:-.02em;line-height:1.15}
+.sv-hero h1 em{font-style:normal;color:#2d96e0}
+.sv-hero p{margin:0 auto;max-width:560px;color:var(--mut);line-height:1.7}
+
+.sv-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.sv-card{background:#fff;border:1px solid var(--line);border-radius:18px;padding:28px;display:flex;flex-direction:column;
+  transition:transform .3s var(--ease),box-shadow .3s var(--ease),border-color .3s}
+.sv-card:hover{transform:translateY(-6px);box-shadow:0 18px 36px -14px rgba(30,27,75,.28);border-color:#cfc8ff}
+
+.sv-icon{width:52px;height:52px;border-radius:14px;background:var(--lav);color:var(--pri);display:grid;place-items:center;margin-bottom:20px;
+  transition:transform .3s var(--ease),background .3s,color .3s}
+.sv-icon svg{width:26px;height:26px}
+.sv-card:hover .sv-icon{background:var(--pri);color:#fff;transform:rotate(-6deg) scale(1.06)}
+
+.sv-card h3{margin:0 0 10px;font-size:1.25rem}
+.sv-card p{margin:0 0 22px;color:var(--mut);line-height:1.65}
+.sv-link{margin-top:auto;align-self:flex-start;color:var(--pri);text-decoration:none;font-weight:500}
+.sv-link span{display:inline-block;transition:transform .25s var(--ease)}
+.sv-link:hover{text-decoration:underline}
+.sv-card:hover .sv-link span{transform:translateX(5px)}
+.sv-link:focus-visible{outline:2px solid var(--pri);outline-offset:3px;border-radius:4px}
+
+@media(max-width:1000px){.sv-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:640px){.sv-grid{grid-template-columns:1fr}.sv-card{padding:24px}}
+
+@media(prefers-reduced-motion:reduce){
+  .sv *{transition:none!important}
+  .sv-card:hover,.sv-card:hover .sv-icon,.sv-card:hover .sv-link span{transform:none}
+}

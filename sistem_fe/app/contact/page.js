@@ -1,20 +1,19 @@
 "use client";
 
 import { useState } from "react";
+import { api } from "../lib/api";
 import "./contact.css";
 
 // Ganti dengan data kontak Anda
 const EMAIL = "dbtechservicesindo@gmail.com";
-const PHONE_DISPLAY = " +62 851 5882 3239";
-const PHONE_DIGITS = " +62 851 5882 3239";
+const PHONE_DISPLAY = "+62 851 5882 3239";
+const PHONE_DIGITS = "6285158823239"; // tanpa spasi dan tanpa "+", dipakai untuk link tel: dan wa.me
 const LOCATION = "Madiun, Jawa Timur, Indonesia";
 
 const services = [
   { value: "custom-software", label: "Custom Software" },
   { value: "web-development", label: "Web Development" },
   { value: "erp-crm", label: "ERP & CRM" },
-  { value: "ai-automation", label: "AI & Automation" },
-  { value: "consulting", label: "IT Consulting" },
 ];
 
 const initialForm = {
@@ -57,15 +56,11 @@ export default function ContactPage() {
     setStatus("sending");
 
     try {
-      // TODO: kirim ke API Anda, contoh:
-      // const res = await fetch("/api/contact", {
-      //   method: "POST",
-      //   headers: { "Content-Type": "application/json" },
-      //   body: JSON.stringify(form),
-      // });
-      // if (!res.ok) throw new Error("Request failed");
+      // Kirim nama layanan (label) agar mudah dibaca di dashboard
+      const service =
+        services.find((s) => s.value === form.service)?.label || "";
 
-      console.log(form);
+      await api.save("/api/contact", null, { ...form, service });
 
       setStatus("sent");
       setForm(initialForm);
